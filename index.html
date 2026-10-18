@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17151b">
+  <meta name="description" content="Softflash — a cozy, retro-inspired camera for your phone and laptop.">
+  <title>Softflash Camera</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Softflash home"><span class="brand-mark">✳</span><span>softflash<span class="brand-dot">.</span></span></a>
+      <div class="top-actions">
+        <span class="live-label"><i></i> LIVE VIEW</span>
+        <button class="icon-btn" id="galleryToggle" aria-label="Open photo gallery" title="Gallery">▧ <span id="photoCount">0</span></button>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <div class="intro">
+        <p class="eyebrow">YOUR LITTLE DIGITAL CAMERA</p>
+        <h1>Make ordinary<br><em>moments feel magic.</em></h1>
+        <p class="subcopy">A little grain, a little glow, a memory worth keeping.</p>
+      </div>
+
+      <section class="camera-card" aria-label="Camera">
+        <div class="viewfinder">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="photoCanvas" hidden></canvas>
+          <div class="view-overlay">
+            <div class="view-top"><span class="rec"><i></i> REC</span><span id="clock">00:00</span><span class="battery">▰▰▰</span></div>
+            <div class="focus-box"><span></span><span></span><span></span><span></span></div>
+            <div class="view-bottom"><span id="filterOverlayName">DIGICAM</span><span class="frame-mark">◉</span><span id="aspectLabel">4:3</span></div>
+          </div>
+          <div class="camera-placeholder" id="placeholder">
+            <div class="placeholder-icon">✳</div>
+            <h2>Ready when you are</h2>
+            <p>Allow camera access to start taking photos.</p>
+            <button class="primary-btn" id="startCamera">Turn on camera <span>↗</span></button>
+          </div>
+          <div class="toast" id="toast" role="status"></div>
+        </div>
+
+        <div class="camera-controls">
+          <button class="control-btn" id="flipCamera" title="Switch camera" aria-label="Switch camera"><span class="flip-icon">↻</span><small>FLIP</small></button>
+          <button class="shutter" id="shutter" aria-label="Take photo" disabled><span></span></button>
+          <button class="control-btn" id="timerBtn" title="Self timer" aria-label="Self timer"><span>◷</span><small id="timerLabel">TIMER OFF</small></button>
+        </div>
+        <div class="camera-footer"><span><i class="status-dot"></i> <span id="cameraStatus">CAMERA OFF</span></span><span id="resolution">PHOTO · HIGH QUALITY</span></div>
+      </section>
+
+      <section class="filters-section">
+        <div class="section-heading"><div><p class="eyebrow">CHOOSE YOUR MOOD</p><h2>Camera looks</h2></div><span class="scroll-hint">SWIPE TO EXPLORE →</span></div>
+        <div class="filter-list" id="filterList">
+          <button class="filter active" data-filter="digicam"><span class="filter-preview look-digicam"><b>01</b></span><span class="filter-name">Digicam</span><span class="filter-note">FLASH ON</span></button>
+          <button class="filter" data-filter="golden"><span class="filter-preview look-golden"><b>02</b></span><span class="filter-name">Golden Hour</span><span class="filter-note">WARM & GLOWY</span></button>
+          <button class="filter" data-filter="film"><span class="filter-preview look-film"><b>03</b></span><span class="filter-name">35mm Film</span><span class="filter-note">SOFT GRAIN</span></button>
+          <button class="filter" data-filter="portrait"><span class="filter-preview look-portrait"><b>04</b></span><span class="filter-name">Portrait</span><span class="filter-note">CLEAN & SOFT</span></button>
+          <button class="filter" data-filter="cool"><span class="filter-preview look-cool"><b>05</b></span><span class="filter-name">Cool Blue</span><span class="filter-note">ICY TONES</span></button>
+          <button class="filter" data-filter="mono"><span class="filter-preview look-mono"><b>06</b></span><span class="filter-name">B&W</span><span class="filter-note">TIMELESS</span></button>
+          <button class="filter" data-filter="faded"><span class="filter-preview look-faded"><b>07</b></span><span class="filter-name">Faded</span><span class="filter-note">OLD MEMORIES</span></button>
+        </div>
+      </section>
+
+      <section class="settings-row">
+        <div class="setting"><label for="aspectSelect">FRAME</label><select id="aspectSelect"><option value="4:3">4:3 · Classic</option><option value="3:2">3:2 · Film</option><option value="1:1">1:1 · Square</option><option value="16:9">16:9 · Wide</option></select></div>
+        <div class="setting"><label for="flashToggle">FLASH LOOK</label><button class="toggle active" id="flashToggle" aria-pressed="true"><span></span><b>ON</b></button></div>
+        <div class="setting"><label for="qualitySelect">QUALITY</label><select id="qualitySelect"><option value="1">High</option><option value="0.85">Balanced</option><option value="0.65">Small file</option></select></div>
+      </section>
+
+      <footer><span>SOFTFLASH CAMERA</span><span>MADE FOR LITTLE MOMENTS ✳</span></footer>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="galleryModal" hidden>
+    <section class="gallery-modal" role="dialog" aria-modal="true" aria-labelledby="galleryTitle">
+      <div class="modal-header"><div><p class="eyebrow">YOUR LITTLE MEMORY BOX</p><h2 id="galleryTitle">Photo gallery</h2></div><button class="close-btn" id="closeGallery" aria-label="Close gallery">×</button></div>
+      <p class="gallery-help">Photos stay in this browser session. Download each photo to keep it permanently.</p>
+      <div class="gallery-grid" id="galleryGrid"><div class="empty-gallery">Your photos will appear here after you take them. ✳</div></div>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
